@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyumba Safi-Chore Management</title>
+    <link rel="stylesheet" href="choremanagement.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+<body>
+    <h2>Chore Assignment Management</h2>
+
+    <section>
+        <h3>Complete Tasks</h3>
+        <table id="completeTasksTable">
+            <tr>
+                <th>Chore Name</th>
+                <th>Person Assigned</th>
+                <th>Date Assigned</th>
+                <th>Due Date</th>
+                <th>Chore Status</th>
+                <th>Actions</th>
+            </tr>
+            <!-- Rows for completed tasks go here -->
+            <tr>
+                <td>Water the plants</td>
+                <td>Hillary</td>
+                <td>2024-02-01</td>
+                <td>2024-02-02</td>
+                <td>Completed</td>
+                <td>
+                    <button class="complete-btn" disabled>Mark Complete</button>
+                    <button class="incomplete-btn" disabled>Mark Incomplete</button>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>Incomplete Tasks</h3>
+        <table id="incompleteTasksTable">
+            <tr>
+                <th>Chore Name</th>
+                <th>Person Assigned</th>
+                <th>Date Assigned</th>
+                <th>Due Date</th>
+                <th>Chore Status</th>
+                <th>Actions</th>
+            </tr>
+            <!-- Rows for incomplete tasks go here -->
+            <tr>
+                <td>Buy Groceries</td>
+                <td>Faith</td>
+                <td>2024-02-01</td>
+                <td>2024-02-10</td>
+                <td>Not Started</td>
+                <td>
+                    <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                    <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Weed</td>
+                <td>Brivian</td>
+                <td>2024-02-05</td>
+                <td>2024-02-15</td>
+                <td>In Progress</td>
+                <td>
+                    <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                    <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Clean the toilet</td>
+                <td>Clinton</td>
+                <td>2024-02-03</td>
+                <td>2024-02-07</td>
+                <td>Not Started</td>
+                <td>
+                    <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                    <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <script>
+        function markComplete(button) {
+            var row = button.parentNode.parentNode;
+            row.cells[4].innerText = "Complete";
+            alert("Chore marked as complete!");
+        }
+
+        function markIncomplete(button) {
+            var row = button.parentNode.parentNode;
+            row.cells[4].innerText = "Incomplete";
+            alert("Chore marked as incomplete!");
+        }
+    </script>
+</body>
+</html>

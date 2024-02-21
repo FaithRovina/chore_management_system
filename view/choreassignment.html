@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="choreassignment.css">
+    <title>Nyumba Safi- Chore Assignment Form</title>
+</head>
+<body>
+
+<h2> Chore Assignment</h2>
+
+<form action="process_assignment.php" method="post" id="choreAssignmentForm">
+
+    <div>
+        <label for="assignPerson">Assign Person:</label>
+        <select id="assignPerson" name="assignPerson" required>
+            
+            <option value="person1">Faith</option>
+            <option value="person2">Brivian</option>
+            <option value="person3">Hillary</option>
+            <option value="person4">Clinton</option>
+            <option value="person5">Daddy</option>
+            <option value="person6">Mummy</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+
+    <div>
+        <label for="assignChore">Assign Chore:</label>
+        <select id="assignChore" name="assignChore" required>
+            <option value="chore1">Clean dishes</option>
+            <option value="chore2">Laundry</option>
+            <option value="chore3">Buy groceries</option>
+            <option value="chore3">Weed </option>
+            <option value="chore3"> Water the plants</option>
+            <option value="chore3"> Cook</option>
+            <option value="chore3">Cleaning the toilet</option>
+            
+        </select>
+    </div>
+
+    <div>
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" name="dueDate" required>
+    </div>
+
+    <button type="submit">Assign Chore</button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+body{
+    background: lightcyan;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: blue;
+    color: white;
+}
+
+.complete-btn, .incomplete-btn {
+    padding: 5px 10px;
+    background-color: lightblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.incomplete-btn {
+    background-color: #e74c3c;
+}

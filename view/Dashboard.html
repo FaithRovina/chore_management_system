@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyumba Safi- Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+<body>
+
+<header>
+  <h1>Chore Management System</h1>
+</header>
+
+<nav>
+  <a href="Dashboard.html">Dashboard</a>
+  <a href="choremanagement.html">Manage Chores</a>
+  <a href="/choreassignment.html">Assign Tasks</a>
+  <a href="/add_chores.html">Add Tasks</a>
+  <a href="Login.html"> Login</a>
+</nav>
+
+<section>
+  <div style="width: 400px; margin: 20px auto;">
+    <canvas id="chorePieChart"></canvas>
+</div>
+
+  <body>
+    <h2>Chore Assignment Management</h2>
+
+    <table id="choreTable">
+        <tr>
+            <th>Chore Name</th>
+            <th>Person Assigned</th>
+            <th>Date Assigned</th>
+            <th>Due Date</th>
+            <th>Chore Status</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>Buy Groceries</td>
+            <td>Faith</td>
+            <td>2024-02-01</td>
+            <td>2024-02-10</td>
+            <td>Not Started</td>
+            <td>
+                <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Weed</td>
+            <td>Brivian</td>
+            <td>2024-02-05</td>
+            <td>2024-02-15</td>
+            <td>In Progress</td>
+            <td>
+                <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Clean the toilet</td>
+            <td>Clinton</td>
+            <td>2024-02-03</td>
+            <td>2024-02-07</td>
+            <td>Not Started</td>
+            <td>
+                <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Water the plants</td>
+            <td>Hillary</td>
+            <td>2024-02-01</td>
+            <td>2024-02-02</td>
+            <td>Completed</td>
+            <td>
+                <button class="complete-btn" onclick="markComplete(this)">Mark Complete</button>
+                <button class="incomplete-btn" onclick="markIncomplete(this)">Mark Incomplete</button>
+            </td>
+        </tr>
+    </table>
+
+    <div style="width: 400px; margin: 20px auto;">
+        <canvas id="chorePieChart"></canvas>
+    </div>
+
+    <script>
+        // Chore data
+        var totalChores = 4;
+        var completedChores = 1;
+        var inProgressChores = 1;
+        var notStartedChores = 2;
+
+        
+        var pieChartData = {
+            labels: ['Complete', 'In Progress', 'Not Started'],
+            datasets: [{
+                data: [
+                    (completedChores / totalChores) * 100,
+                    (inProgressChores / totalChores) * 100,
+                    (notStartedChores / totalChores) * 100
+                ],
+                backgroundColor: ['#4CAF50', '#3498db', '#e74c3c']
+            }]
+        };
+
+        var ctx = document.getElementById('chorePieChart').getContext('2d');
+        var chorePieChart = new Chart(ctx, {
+            type: 'pie',
+            data: pieChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'top'
+                }
+            }
+        });
+
+            function markComplete(button) {
+            var row = button.parentNode.parentNode;
+            row.cells[4].innerText = "Complete";
+            alert("Chore marked as complete!");
+        }
+
+        function markIncomplete(button) {
+            var row = button.parentNode.parentNode;
+            row.cells[4].innerText = "Incomplete";
+            alert("Chore marked as incomplete!");
+        }
+    </script>
+
+<footer>
+  <p>&copy; 2024 Chore Management System</p>
+</footer>
+
+<script>
+ 
+</script>
+
+</body>
+</html>

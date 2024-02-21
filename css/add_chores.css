@@ -1,0 +1,88 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background: url('/House-Cleaning.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+h2 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 8px;
+    width: 200px;
+}
+
+button {
+    padding: 8px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: blue;
+    color: white;
+}
+
+button.actionButton {
+    padding: 5px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button.actionButton:hover {
+    background-color: #006080;
+}
+
+.dashboard-link {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.chore-link:hover {
+    background-color: blue;
+}
