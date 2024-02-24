@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title> Nyumba Safi - Registration</title>
   <link rel="stylesheet" href="../css/Registration.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css" 
+  integrity="sha512-17AHGe9uFHHt+QaRYieK7bTdMMHBMi8PeWG99Mf/xEcfBLDCn0Gze8Xcx1KoSZxDnv+KnCC+os/vuQ7jrF/nkw==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -32,6 +35,25 @@
             <span class="details">Last  Name</span>
             <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" pattern="[A-Za-z ]+" required>
           </div>
+
+          <div class="input-box">
+            <span class="details">Gender</span>
+            <div>
+              <input type="radio" id="male" name="gender" value="male" required>
+              <label for="male">Male</label>
+            </div>
+            <div>
+              <input type="radio" id="female" name="gender" value="female" required>
+              <label for="female">Female</label>
+            </div>
+          </div>
+
+
+          <div class="input-box">
+            <span class="details">Date of Birth</span>
+            <input type="date" id="dob" name="dob" required>
+          </div>
+
           <div class="input-box">
             <span class="details">Email</span>
             <input type="text" id="email" name="email" placeholder="Enter your email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
@@ -61,7 +83,7 @@
 
   <script>
     function validateForm() {
-      var firstName = document.getElementById("fullName").value;
+      var firstName = document.getElementById("firstName").value;
       var lastName = document.getElementById("lastName").value;
       var email = document.getElementById("email").value;
       var phoneNumber = document.getElementById("phoneNumber").value;
@@ -79,8 +101,24 @@
         alert("Invalid email format. Make sure it contains an @ symbol.");
         return false;
       }
+
+      // Validate gender selection
+      var maleChecked = document.getElementById("male").checked;
+      var femaleChecked = document.getElementById("female").checked;
+      if (!maleChecked && !femaleChecked) {
+        alert("Please select a gender.");
+        return false;
+      }
+
+      // Validate date of birth
+      var dob = new Date(document.getElementById("dob").value);
+      var currentDate = new Date();
+      if (dob >= currentDate) {
+        alert("Date of birth cannot be in the future.");
+          eturn false;
+        }
    
-    // validate phone number
+      // validate phone number
       var phonePattern = /^(\+\d{1,3}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
   
      // Check if the phone number matches the pattern
@@ -105,6 +143,11 @@
 
       return true; 
     }  
+
+    alert("Registration successful! You can now login.");
+    window.location.href = "../login/login_view.php";
+
+    <div class="error"><?php echo $registration_error; ?></div>
   </script>
 </body>
 </html>

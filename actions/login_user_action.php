@@ -12,7 +12,7 @@ include '../settings/connection.php';
 // Check if login button was clicked
 if (!isset($_POST['login_btn'])) {
     // Stop processing and provide appropriate message or redirection
-    header("Location:../login/Login_view.php?error=login_button_not_clicked");
+    header("Location:../login/login_view.php?error=login_button_not_clicked");
     exit();
 }
 
@@ -23,7 +23,7 @@ $passwd = $_POST['passwd'];
 // Check if email or passwd is empty
 if (empty($email) || empty($passwd)) {
     // Provide appropriate message or redirection
-    header("Location:../login/Login_view.php?error=empty_fields");
+    header("Location:../login/login_view.php?error=empty_fields");
     exit();
 }
 
@@ -37,7 +37,7 @@ $result = $stmt->get_result();
 // Check if any row was returned
 if ($result->num_rows == 0) {
     // Provide appropriate response (user not registered, incorrect email or passwd, etc.)
-    header("Location:../login/Login_view.php?error=user_not_registered");
+    header("Location:../login/login_view.php?error=user_not_registered");
     exit();
 }
 

@@ -29,8 +29,6 @@
 
             <button type="submit" class="login-btn">Sign In</button>
         </form>
-
-        <hr class="divider">
                 
         <p class="forgot-password"><a href="../view/Password_reset.html">Forgot password?</a></p>
 
