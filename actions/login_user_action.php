@@ -28,8 +28,8 @@ if (empty($email) || empty($passwd)) {
 }
 
 // Prepare and execute SQL query to retrieve user data
-$query = "SELECT * FROM users WHERE email = ?"; // Changed to select by email
-$stmt = $conn->prepare($query);
+$query = "SELECT * FROM people WHERE email = ?"; 
+$stmt = $con->prepare($query);
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -45,8 +45,8 @@ if ($result->num_rows == 0) {
 $user = $result->fetch_assoc();
 
 // Verify passwd user provided against database record 
-if (!passwd_verify($passwd, $user['passwd'])) {
-    header("Location:../login/Login_view.php?error=incorrect_passwd");
+if (!password_verify($passwd, $user['passwd'])) {
+    header("Location:../login/login_view.php?error=incorrect_passwd");
     exit();
 }
 

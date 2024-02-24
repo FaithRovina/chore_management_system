@@ -16,23 +16,24 @@
     <div class="login-container">
         <h1>Login</h1>
         
-        <form id="login-form" method="POST" action="../actions/login_user_actions.php">
+        <form id="login-form" method="POST" action="../actions/login_user_action.php">
             <div class="input-container">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email">
             </div>
 
             <div class="input-container">           
-                <label for="password">Password: </label>            
-                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <label for="passwd">Password: </label>            
+                <input type="passwd" id="passwd" name="passwd" placeholder="Enter your password">
             </div>
+            <button type="submit" class="login-btn">Sign In</button>#
+            <input type="hidden" name="login_btn" value="1">
 
-            <button type="submit" class="login-btn">Sign In</button>
         </form>
                 
         <p class="forgot-password"><a href="../view/Password_reset.html">Forgot password?</a></p>
 
-        <p class="sign-up-link">Need an account? <a href="../login/Register_view.php">Sign up</a></p>
+        <p class="sign-up-link">Need an account? <a href="../login/register_view.php">Sign up</a></p>
     </div>
 </body>
 </html>

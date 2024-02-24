@@ -2,6 +2,10 @@
 // Include connection file
 include '../settings/connection.php';
 
+// Initialize variables
+$registration_success = false;
+$registration_error = '';
+
 // Check if form submitted
 if (isset($_POST['register_button'])) {
     // Collect form data and assign each to a variable
@@ -32,8 +36,14 @@ if (isset($_POST['register_button'])) {
             $fid = 1; // Assumed
             
             if ($stmt->execute()) {
-                // Set registration success message
+                /// Set registration success message and redirect
                 $registration_success = true;
+                $redirect_url = "../login/login_view.php?registration_success=true"; 
+                header("Location: $redirect_url");
+                exit();
+                }
+                          
+                
             } else {
                 // Set registration error message
                 $registration_error = "Registration failed. Please try again.";
@@ -46,8 +56,8 @@ if (isset($_POST['register_button'])) {
         // Set registration error message
         $registration_error = "Error: Database connection failed.";
     }
-} else {
+    
     // If form not submitted, redirect back to register_view page
     header("Location: ../login/register_view.php");
     exit();
-}
+
