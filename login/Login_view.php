@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 
     <title>Nyumba Safi - Login</title>
 </head>
@@ -15,7 +16,7 @@
     <div class="login-container">
         <h1>Login</h1>
         
-        <form id="login-form" method="POST" action="../action/login_user_action.php">
+        <form id="login-form" method="POST" action="../actions/login_user_actions.php">
             <div class="input-container">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email">
@@ -24,8 +25,6 @@
             <div class="input-container">           
                 <label for="password">Password: </label>            
                 <input type="password" id="password" name="password" placeholder="Enter your password">
-                <input type="checkbox" id="show-password">
-                <label for="show-password">Show Password</label>
             </div>
 
             <button type="submit" class="login-btn">Sign In</button>

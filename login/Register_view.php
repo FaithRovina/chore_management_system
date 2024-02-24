@@ -13,7 +13,7 @@
 
    <?php
    if(isset($_POST["register_button"])) { 
-    $fullName = $_POST['fullName'];
+    $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $phoneNumber = $_POST['phoneNumber'];
@@ -26,7 +26,7 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
-            <input type="text" id="fullName" name="fullName" placeholder="Enter your first name" pattern="[A-Za-z ]+" required>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" pattern="[A-Za-z ]+" required>
           </div>
           <div class="input-box">
             <span class="details">Last  Name</span>
@@ -38,7 +38,7 @@
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your number" pattern="[0-9]{10}" title="Phone number should contain exactly 10 digits" required>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your number" pattern="^(\+\d{1,3}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" title="Phone number should be between 10 to 20 digits and can include spaces, brackets, plus, and dash" required>
           </div>
           <div class="input-box">
             <span class="details">Password</span>      
@@ -61,7 +61,7 @@
 
   <script>
     function validateForm() {
-      var fullName = document.getElementById("fullName").value;
+      var firstName = document.getElementById("fullName").value;
       var lastName = document.getElementById("lastName").value;
       var email = document.getElementById("email").value;
       var phoneNumber = document.getElementById("phoneNumber").value;
@@ -69,7 +69,7 @@
       var confirmPassword = document.getElementById("confirmPassword").value;
 
       // Validate First Name and Last Name
-      if (!/^[A-Za-z ]+$/.test(fullName) || !/^[A-Za-z ]+$/.test(lastName)) {
+      if (!/^[A-Za-z ]+$/.test(firstName) || !/^[A-Za-z ]+$/.test(lastName)) {
         alert("First name and last name cannot contain a number.");
         return false;
       }
@@ -79,6 +79,17 @@
         alert("Invalid email format. Make sure it contains an @ symbol.");
         return false;
       }
+   
+    // validate phone number
+      var phonePattern = /^(\+\d{1,3}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+  
+     // Check if the phone number matches the pattern
+       if (phonePattern.test(phoneNumber)) {
+        return true; // Valid phone number
+      } else {
+        return false; // Invalid phone number
+     }    
+
 
       // Validate Password Length
       if (password.length < 6) {

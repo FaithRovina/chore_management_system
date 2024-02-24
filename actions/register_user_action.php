@@ -5,25 +5,25 @@ include '../settings/connection.php';
 // Check if form submitted
 if (isset($_POST['register_button'])) {
     // Collect form data and assign each to a variable
-    $username = $_POST['username']; // Update this line to match the correct field name from your HTML form
+    $fname = $_POST['firstName']; 
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $passwd = $_POST['password'];
 
     // Encrypt the password 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($passwd, PASSWORD_DEFAULT);
 
     // Check if the connection object is valid
     if ($con) {
         // Prepare the SQL statement
-        $query = "INSERT INTO people (username, email, password, rid) VALUES (?, ?, ?, 3)";
+        $query = "INSERT INTO people (fname, email, passwd, rid) VALUES (?, ?, ?, 3)";
         $stmt = $con->prepare($query);
 
         if ($stmt) {
             // Bind parameters and execute the query
-            $stmt->bind_param("sss", $username, $email, $hashed_password);
+            $stmt->bind_param("sss",$fname, $email, $hashed_password);
             if ($stmt->execute()) {
                 // Redirect to login page if registration is successful
-                header("Location: ../Login/login_view.php");
+                header("Location: ../login/login_view.php");
                 exit();
             } else {
                 // Redirect to registration page with error message
