@@ -16,7 +16,7 @@
     <div class="login-container">
         <h1>Login</h1>
         
-        <form id="login-form">
+        <form id="login-form"  name= "login_btn" action="../actions/login_user_action.php">
             <div class="input-container">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email">
@@ -26,9 +26,9 @@
                 <label for="passwd">Password: </label>            
                 <input type="password" id="passwd" name="passwd" placeholder="Enter your password">
             </div>
-            <button type="submit" class="login-btn">Sign In</button>
-            <input type="hidden" name="login_btn" value="1">
-        </form>
+
+            <button type="submit" name="login_btn" class="login-btn">Sign In</button>
+            </form>
                 
         <p class="forgot-password"><a href="../view/Password_reset.html">Forgot password?</a></p>
 
