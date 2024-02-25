@@ -11,23 +11,16 @@
   integrity="sha512-17AHGe9uFHHt+QaRYieK7bTdMMHBMi8PeWG99Mf/xEcfBLDCn0Gze8Xcx1KoSZxDnv+KnCC+os/vuQ7jrF/nkw==" 
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <?php
+  include("../functions/select_role_fxn.php");
+  ?>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-
-    <?php
-    if(isset($_POST["register_button"])) { 
-      $firstName = $_POST['firstName'];
-      $lastName = $_POST['lastName'];
-      $email = $_POST['email'];
-      $phoneNumber = $_POST['phoneNumber'];
-      $password = $_POST['password'];
-      $confirmPassword = $_POST['confirmPassword'];
-    }
-    ?>
 
     <form action="../actions/register_user_action.php" method="post" onsubmit="return validateForm()">
       <div class="user-details">
@@ -66,6 +59,18 @@
           <span class="details">Phone Number</span>
           <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your number" pattern="^(\+\d{1,3}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" title="Phone number should be between 10 to 20 digits and can include spaces, brackets, plus, and dash" required>
         </div>
+
+        <div class="input-box">
+            <span class="details">Family Name</span>
+            <select name="family_name" id="family_name" class="browser-default" required>
+              <option value="">Select Family Name</option>
+              <?php foreach ($family_name as $fam_name): ?>
+              <option value="<?php echo $fam_name; ?>"><?php echo $fam_name; ?></option>
+              <?php endforeach; ?>
+            </select>
+
+        </div>
+
         <div class="input-box">
           <span class="details">Password</span>      
           <input type="password" id="password" name="password" placeholder="Enter your password" minlength="6" required>
@@ -120,6 +125,13 @@
     if (dob >= currentDate) {
       alert("Date of birth cannot be in the future.");
       return false;
+    }
+
+    // Ensure the dropdown has a selected value
+    var selectedFamilyName = document.getElementById("family_name").value;
+    if (selectedFamilyName === "") {
+        alert("Please select a family name.");
+        return false;
     }
 
     // validate phone number
