@@ -2,59 +2,66 @@
 // Include connection file
 include '../settings/connection.php';
 
-//Enable error reporting and display errors
+// Enable error reporting and display errors
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Include connection file
-include '../settings/connection.php';
+// Check if the form is submitted
+if (isset($_POST['login_btn'])) {
+    // Get the form data
+    $email = $_POST['email'];
+    $password = $_POST['passwd'];
 
-// Check if login button was clicked
-if (!isset($_POST['login_btn'])) {
-    // Stop processing and provide appropriate message or redirection
-    header("Location:../login/login_view.php?error=login_button_not_clicked");
-    exit();
+    // Prepare and execute SQL query to retrieve user data
+    $query = "SELECT * FROM people WHERE email = ?"; 
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if any row was returned
+    if ($result->num_rows == 1) {
+        // Fetch record
+        $user = $result->fetch_assoc();
+
+        // Verify password user provided against database record 
+        if (password_verify($password, $user['passwd'])) {
+            // Authentication successful
+            // Create session for user id and role id
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role_id'] = $user['role_id'];
+
+            // Generate the JSON response for successful login
+            $response = array(
+                'success' => true,
+                'message' => 'Login successful'
+            );
+        } else {
+            // Invalid password
+            $response = array(
+                'success' => false,
+                'message' => 'Incorrect password'
+            );
+        }
+    } else {
+        // User not registered
+        $response = array(
+            'success' => false,
+            'message' => 'User not registered'
+        );
+    }
+
+    // Send the JSON response
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+} else {
+    // Return JSON response indicating error (if login button not clicked)
+    echo json_encode(array(
+        'success' => false,
+        'message' => 'Login button not clicked'
+    ));
+    exit;
 }
 
-// Collect form data and store in variables
-$email = $_POST['email']; 
-$passwd = $_POST['passwd'];
-
-// Check if email or passwd is empty
-if (empty($email) || empty($passwd)) {
-    // Provide appropriate message or redirection
-    header("Location:../login/login_view.php?error=empty_fields");
-    exit();
-}
-
-// Prepare and execute SQL query to retrieve user data
-$query = "SELECT * FROM people WHERE email = ?"; 
-$stmt = $con->prepare($query);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Check if any row was returned
-if ($result->num_rows == 0) {
-    // Provide appropriate response (user not registered, incorrect email or passwd, etc.)
-    header("Location:../login/login_view.php?error=user_not_registered");
-    exit();
-}
-
-// Fetch record
-$user = $result->fetch_assoc();
-
-// Verify passwd user provided against database record 
-if (!password_verify($passwd, $user['passwd'])) {
-    header("Location:../login/login_view.php?error=incorrect_passwd");
-    exit();
-}
-
-// Create session for user id and role id
-session_start();
-$_SESSION['user_id'] = $user['id'];
-$_SESSION['role_id'] = $user['role_id'];
-
-// Redirect to home page
-header("Location:../view/Dashboard.html");
-exit();

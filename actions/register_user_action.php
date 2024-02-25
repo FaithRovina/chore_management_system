@@ -13,7 +13,7 @@ if (isset($_POST['register_button'])) {
     $lname = $_POST['lastName'];
     $email = $_POST['email'];
     $passwd = $_POST['password'];
-    $gender = isset($_POST['gender']) ? $_POST['gender'] : "";  // Colllect selected gender
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : "";  
     $dob = $_POST['dob'];
     $tel = $_POST['phoneNumber'];
 
