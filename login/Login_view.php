@@ -51,7 +51,15 @@
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-                return response.json();
+                return response.text(); // Return the response as text
+            })
+            .then(text => {
+                try {
+                    return JSON.parse(text); // Try to parse the response as JSON
+                } catch (error) {
+                    // If parsing fails, assume it's an error message
+                    throw new Error("Invalid JSON response from server");
+                }
             })
             .then(data => {
                 // Check response and show appropriate SweetAlert
@@ -65,11 +73,10 @@
             })
             .catch(error => {
                 // Show error message if AJAX request fails
+                console.error("An error occurred:", error);
                 swal("Error", "An error occurred. Please try again later.", "error");
-                console.error("Error:", error);
             });
         });
     </script>
 </body>
 </html>
-s

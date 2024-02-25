@@ -15,11 +15,28 @@ if (isset($_POST['login_btn'])) {
     // Prepare and execute SQL query to retrieve user data
     $query = "SELECT * FROM people WHERE email = ?"; 
     $stmt = $con->prepare($query);
+    if (!$stmt) {
+        $response = array(
+            'success' => false,
+            'message' => 'Database error: ' . $con->error
+        );
+        echo json_encode($response);
+        exit;
+    }
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
     // Check if any row was returned
+    if ($result === false) {
+        $response = array(
+            'success' => false,
+            'message' => 'Database error: ' . $stmt->error
+        );
+        echo json_encode($response);
+        exit;
+    }
+
     if ($result->num_rows == 1) {
         // Fetch record
         $user = $result->fetch_assoc();
@@ -56,6 +73,7 @@ if (isset($_POST['login_btn'])) {
     header('Content-Type: application/json');
     echo json_encode($response);
     exit;
+
 } else {
     // Return JSON response indicating error (if login button not clicked)
     echo json_encode(array(
@@ -64,3 +82,4 @@ if (isset($_POST['login_btn'])) {
     ));
     exit;
 }
+
