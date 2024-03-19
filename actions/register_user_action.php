@@ -38,6 +38,7 @@ if (isset($_POST['register_button'])) {
             if ($stmt->execute()) {
                 /// Set registration success message and redirect
                 $registration_success = true;
+                
                 $redirect_url = "../login/login_view.php?registration_success=true"; 
                 header("Location: $redirect_url");
                 exit();

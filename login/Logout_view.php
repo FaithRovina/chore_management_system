@@ -3,10 +3,10 @@
 session_start();
 
 // Unset the session IDs created during login
-unset($_SESSION['user_id']);
-unset($_SESSION['username']);
+unset($_SESSION['pid']);
+unset($_SESSION['rid']);
 
 // Redirect to login_view page
 header("Location: login_view.php");
 exit(); 
-?>
+

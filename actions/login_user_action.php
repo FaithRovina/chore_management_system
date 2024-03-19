@@ -46,31 +46,22 @@ if (isset($_POST['submit'])) {
                 $_SESSION['pid'] = $user['pid'];
                 $_SESSION['rid'] = $user['rid'];
 
-                // Generate the JSON response for successful login
-                // $response = array(
-                //     'success' => true,
-                //     'message' => 'Login successful'
+                // Redirect the user after successful login
                 header("Location: ../view/dashboard.html");
-                
+                exit();
             } else {
                 // Invalid password
-                $response = array(
-                    'success' => false,
-                    'message' => 'Incorrect password'
-                );
+                // Redirect back to login form with error message
+                header("Location: ../login/login_view.php?error=Incorrect password");
+                exit();
             }
         } else {
             // User not registered
-            $response = array(
-                'success' => false,
-                'message' => 'User not registered'
-            );
+            // Redirect back to login form with error message
+            header("Location: ../login/login_view.php?error=User not registered");
+            exit();
         }
     }
-
-    // Send the JSON response
-    header('Content-Type: application/json');
-    echo json_encode($response);
-    exit;
 } 
 // Login button not clicked (form not submitted)
+?>

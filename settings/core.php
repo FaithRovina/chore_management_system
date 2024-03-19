@@ -9,7 +9,7 @@ define('IDLE_TIMEOUT', 300); // 5 minutes for testing purpose
 // Function to check for login using user id session
 function checkLogin() {
     // Check if user id session exists
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['pid'])) {
         // Redirect to login page
         header("Location: ../login/login_view.php");
         exit; // Stop further execution
@@ -22,12 +22,12 @@ function checkLogin() {
 // Function to check for user role id session
 function checkUserRole() {
     // Check if user role id session exists
-    if (!isset($_SESSION['user_role_id'])) {
+    if (!isset($_SESSION['rid'])) {
         return false;
     }
 
     // Return role id
-    return $_SESSION['role_id'];
+    return $_SESSION['rid'];
 }
 
 // Function to reset idle timer

@@ -1,6 +1,6 @@
 <?php
 //constants
-$SERVER= 'localhost:3306';
+$SERVER= 'localhost:3308';
 $USERNAME= 'root';
 $PASSWORD= '@StrateGicPlan20178##';
 $DATABASE='chores_mgt';
