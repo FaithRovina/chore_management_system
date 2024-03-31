@@ -23,7 +23,6 @@
         <tbody>
             <?php
             // Include the chore functions file
-            require_once('../functions/chore_fxn.php');
             require_once('../actions/get_all_chores_action.php');
 
             // Fetch all chores

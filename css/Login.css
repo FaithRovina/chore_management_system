@@ -49,8 +49,7 @@ input {
 }
 
 .login-btn:hover {
-    background-color: darkblue; /* Darken the background color on hover */
-}
+    background-color: darkblue; 
 
 
 .forgot-password,
@@ -62,6 +61,7 @@ input {
 
 .forgot-password a,
 .sign-up-link a {
-    color:  #71b7e6;
+    color:  blue;
     text-decoration: none;
+}
 }

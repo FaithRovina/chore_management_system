@@ -33,7 +33,7 @@ if (isset($_POST['register_button'])) {
         if ($stmt) {
             // Bind parameters and execute the query
             $stmt->bind_param("ssssiiss", $fname, $lname, $email, $hashed_password, $fid, $genderInt, $dob,$tel);
-            $fid = 1; // Assumed
+            $fid = 1;
             
             if ($stmt->execute()) {
                 /// Set registration success message and redirect

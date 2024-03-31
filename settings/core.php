@@ -1,10 +1,9 @@
 <?php
-
 // Start session
 session_start();
 
 // Set idle timeout in seconds
-define('IDLE_TIMEOUT', 300); // 5 minutes for testing purpose
+define('IDLE_TIMEOUT', 300); 
 
 // Function to check for login using user id session
 function checkLogin() {
@@ -59,5 +58,4 @@ function checkIdleTimeout() {
 
 // Call checkIdleTimeout on each request to check for idle timeout
 checkIdleTimeout();
-
-
+?>
