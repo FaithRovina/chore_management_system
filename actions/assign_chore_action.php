@@ -7,12 +7,9 @@ require_once('../settings/core.php');
 if (isset($_POST['Assign'])) {
     // Collect form data and assign each to a variable
     $chorename = $_POST['chore'];
-    $assignedToName = $_POST['assigned_to']; // Keep the assigned to name as it is for clarity
-    $date_due = $_POST['date_due'];
-    $assignedBy = $_SESSION['pid']; 
-
-    // Debugging output for assigned-to name
-    echo "Debug: Assigned-to Name: " . $assignedToName . "<br>";
+    $assignedToName = $_POST['assigned_to']; 
+    $date_due = date('Y-m-d', strtotime($_POST['date_due']));
+    $assignedBy = $_SESSION['pid'];   
 
     // Fetch the assigned-to person's ID based on their name
     $assignedToQuery = "SELECT pid FROM people WHERE fname = ?";
@@ -40,7 +37,7 @@ if (isset($_POST['Assign'])) {
             $sql = "INSERT INTO assignment (cid, sid, date_assign, date_due, last_updated, date_completed, img, who_assigned, assigned_to) 
                 VALUES (?, 1, NOW(), ?, NOW(), NULL, NULL, ?, ?)";
             $stmt_insert = $con->prepare($sql);
-            $stmt_insert->bind_param("iiss", $cid, $date_due, $assignedBy, $assignedToId);
+            $stmt_insert->bind_param("isss", $cid, $date_due, $assignedBy, $assignedToId);
 
             if ($stmt_insert->execute()) {
                 // Fetch the newly assigned chore details

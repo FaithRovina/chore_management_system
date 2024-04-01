@@ -13,6 +13,7 @@
     ?>
 </head>
 
+
 <body>
     <h1>Assign Chore</h1>
 
@@ -85,7 +86,6 @@
                 <option value="<?php echo $chore; ?>"><?php echo $chore; ?></option>
             <?php endforeach; ?>
         </select>
-
         <label for="due_date">Due Date:</label>
         <input type="date" id="date_due" name="date_due" required>
         <button type="submit" class="btn btn-primary" name="Assign">Assign</button>
